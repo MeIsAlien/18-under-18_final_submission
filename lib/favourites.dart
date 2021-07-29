@@ -82,9 +82,9 @@ class _RainbowAnimatedTextState extends State<RainbowAnimatedText>
           _animation.value,
           _animation.value + 0.5
         ], colors: [
-          Colors.orange,
-          Colors.blue,
-          Colors.orange
+          tColor,
+          Colors.purple,
+          tColor
         ]).createShader((rect));
       },
     );
@@ -151,14 +151,14 @@ class _FavoritesGridState extends State<FavoritesGrid> {
               mainAxisSpacing: 20),
           itemCount: gridTiles.length,
           itemBuilder: (BuildContext context, int index) {
-            return Text("data");
+            return gridTiles[index];
           });
     } else {
       return Center(
           child: Container(
             child: Text(
               "No Favourites for now ¯" + r'\' + "_(ツ)_/¯",
-              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.orange),
+              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.purple),
             ),
           ));
     }}
