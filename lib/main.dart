@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'global_variables.dart';
 import 'ui.dart';
+//import 'package:flutter/services.dart';
 import 'splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getKeys();
   runApp(MyApp());
-  print(objectTypesCarousel.length);
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   systemNavigationBarColor: tColor,
+  // ));
 }
 
 class MyApp extends StatelessWidget {

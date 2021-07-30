@@ -13,9 +13,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  final List<Widget> _screens = [HomeScreenV2(), AugmentedPage(), FavoritesScreen()];
+  final List<Widget> _screens = [
+    HomeScreenV2(),
+    AugmentedPage(),
+    FavoritesScreen()
+  ];
 
-  _onItemTapped(index){
+  _onItemTapped(index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -26,26 +30,38 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Scan and Render',
+          child: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Scan and Render',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'Favorites',
+              ),
+            ],
+            backgroundColor: tColor,
+            currentIndex: _selectedIndex,
+            unselectedItemColor: Colors.grey,
+            selectedItemColor: secondaryColor,
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
-          ),
-        ],
-        backgroundColor: tColor,
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: secondaryColor,
-        onTap: _onItemTapped,
+        ),
       ),
     );
   }

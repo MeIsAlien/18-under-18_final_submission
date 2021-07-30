@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'ui.dart';
 import 'package:ar_ui/global_variables.dart' show allObjects, prefs, tColor;
+
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key key}) : super(key: key);
@@ -30,7 +32,7 @@ class _IntroScreenState extends State<IntroScreen> {
           image: Padding(
               padding: EdgeInsets.only(top: 25),
               child: Image.network(
-                "https://i.postimg.cc/909WDThT/welcome-word-flat-cartoon-people-characters-81522-4207-removebg-preview.png",
+                "https://assets7.lottiefiles.com/private_files/lf30_TBKozE.json",
               ))),
       PageViewModel(
           titleWidget: Text("Choose from the library",
@@ -64,12 +66,7 @@ class _IntroScreenState extends State<IntroScreen> {
             style: TextStyle(
                 fontSize: 20, fontFamily: "Pangolin", color: Colors.orange),
             textAlign: TextAlign.center,
-          ),
-          image: Padding(
-              padding: EdgeInsets.only(top: 25),
-              child: Image.network(
-                "https://i.postimg.cc/yY7fRM3k/animation-500-kpjta3bs.gif",
-              ))),
+          ),image: Lottie.network("https://assets8.lottiefiles.com/packages/lf20_n2m0isqh.json")),
       PageViewModel(
           titleWidget: Text("Save your models on the go",
               style: TextStyle(
@@ -84,11 +81,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 fontSize: 20, fontFamily: "Pangolin", color: Colors.orange),
             textAlign: TextAlign.center,
           ),
-          image: Icon(
-            Icons.favorite,
-            size: 200,
-            color: Colors.red,
-          )),
+          image: Lottie.network("https://assets9.lottiefiles.com/packages/lf20_kduzs1w9.json")),
       PageViewModel(
           titleWidget: Text("You are Ready!",
               style: TextStyle(
@@ -106,7 +99,7 @@ class _IntroScreenState extends State<IntroScreen> {
           image: Padding(
               padding: EdgeInsets.only(top: 25),
               child: Image.network(
-                "https://i.postimg.cc/Gh2qmksf/animation-500-kpjtgg69.gif",
+                "https://assets2.lottiefiles.com/packages/lf20_gri1GI.json",
               ))),
     ];
   }
