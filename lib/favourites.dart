@@ -1,10 +1,9 @@
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:lottie/lottie.dart';
 import 'mid_screen.dart';
 import 'global_variables.dart';
-import 'dart:math' show Random;
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({Key key}) : super(key: key);
@@ -17,23 +16,23 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        body: Container(
-          color: Colors.white,
-          height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.only(top: 50, bottom: 20, left: 10, right: 10),
-            child: SingleChildScrollView(
-                child: Column(
-              children: [
-                RainbowAnimatedText(),
-                SizedBox(
-                  height: 50,
-                ),
-                Container(height: 400, child: FavoritesGrid())
-              ],
-            )),
-          ),
-        );
+      body: Container(
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height,
+        padding:
+            const EdgeInsets.only(top: 50, bottom: 20, left: 10, right: 10),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            RainbowAnimatedText(),
+            SizedBox(
+              height: 50,
+            ),
+            Container(height: 400, child: FavoritesGrid())
+          ],
+        )),
+      ),
+    );
   }
 }
 
@@ -101,7 +100,6 @@ class FavoritesGrid extends StatefulWidget {
 class _FavoritesGridState extends State<FavoritesGrid> {
   List<Widget> gridTiles = [];
 
-
   @override
   void initState() {
     _addTiles();
@@ -115,7 +113,7 @@ class _FavoritesGridState extends State<FavoritesGrid> {
         gridTiles.add(TextButton(
           child: Container(
             decoration: BoxDecoration(
-              color: primaryColors[Random().nextInt(primaryColors.length)],
+              color: tColor,
               borderRadius: BorderRadius.all(
                 Radius.circular(10.0),
               ),
@@ -132,7 +130,8 @@ class _FavoritesGridState extends State<FavoritesGrid> {
               context,
               MaterialPageRoute(
                   builder: (context) => DescScreen(entity: element),
-                  settings: RouteSettings(name: "Description Screen - $element")),
+                  settings:
+                      RouteSettings(name: "Description Screen - $element")),
             );
           },
         ));
@@ -155,11 +154,14 @@ class _FavoritesGridState extends State<FavoritesGrid> {
           });
     } else {
       return Center(
-          child: Container(
-            child: Text(
-              "No Favourites for now ¯" + r'\' + "_(ツ)_/¯",
-              style: TextStyle(fontWeight: FontWeight.w700, color: Colors.purple),
-            ),
-          ));
-    }}
+          child: Column(children: [
+        Lottie.network(
+            "https://assets3.lottiefiles.com/packages/lf20_r71cen62.json"),
+        Text(
+          r"No Favourites found ¯\_(ツ)_/¯",
+          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.purple),
+        ),
+      ]));
+    }
   }
+}

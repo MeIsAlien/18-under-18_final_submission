@@ -1,14 +1,25 @@
-import 'dart:math';
-
 import 'package:ar_ui/ar_screen.dart';
 import 'package:ar_ui/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class DescScreen extends StatelessWidget {
+class DescScreen extends StatefulWidget {
   final String entity;
 
   const DescScreen({Key key, this.entity}) : super(key: key);
+
+  @override
+  _DescScreenState createState() => _DescScreenState();
+}
+
+class _DescScreenState extends State<DescScreen> {
+  String entity;
+
+  @override
+  void initState(){
+    super.initState();
+    this.entity = widget.entity;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +30,6 @@ class DescScreen extends StatelessWidget {
         bottom: false,
         child: Stack(
           children: <Widget>[
-
             SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,51 +101,80 @@ class DescScreen extends StatelessWidget {
                 },
               ),
             ),
-            Positioned(
-              child: Stack(alignment: Alignment.bottomRight, children: [
-                Container(
-                    color: Colors.transparent,
-                    height: 300,
-                    child: WebView(
-                      initialUrl:
-                      "https://joelnadar-thesorceror.github.io/model_viewer/?model_url=${objectKeys[entity.toLowerCase()]["3d_model_URI"]}",
-                      javascriptMode: JavascriptMode.unrestricted,
-                    )),
-                TextButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              ARScreen(entity: entity),
-                          settings: RouteSettings(
-                              name: "AR placement Screen - $entity")),
-                    );
-                  },
-                  icon: Icon(Icons.camera_sharp, color: Colors.white),
-                  label:
-                  Text("View In AR", style: TextStyle(color: Colors.white)),
-                  style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue[900])),
-                ),
-                Positioned(bottom: 0, left: 0, child: IconButton(
-                  onPressed: () {
-
-                  },
-                  icon: Icon(Icons.filter_center_focus, color: Colors.white),
-                  // style: ButtonStyle(
-                  //     backgroundColor:
-                  //     MaterialStateProperty.all<Color>(Colors.grey[800])),
-                )),
-              ]),
-            ),
+            TopModelView(entity: entity,)
           ],
         ),
       ),
     );
   }
 }
+
+class TopModelView extends StatefulWidget {
+  final String entity;
+  const TopModelView({Key key, this.entity}) : super(key: key);
+
+  @override
+  _TopModelViewState createState() => _TopModelViewState();
+}
+
+class _TopModelViewState extends State<TopModelView> {
+  double modelViewerSize = 300;
+  String entity;
+
+  @override
+  void initState() {
+    super.initState();
+    entity = widget.entity;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      child: Stack(alignment: Alignment.bottomRight, children: [
+        AnimatedContainer(
+            duration: Duration(seconds: 1),
+            color: Colors.transparent,
+            height: modelViewerSize,
+            child: WebView(
+              initialUrl:
+              "https://joelnadar-thesorceror.github.io/model_viewer/?model_url=${objectKeys[entity.toLowerCase()]["3d_model_URI"]}",
+              javascriptMode: JavascriptMode.unrestricted,
+            )),
+        TextButton.icon(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ARScreen(entity: entity),
+                  settings: RouteSettings(
+                      name: "AR placement Screen - $entity")),
+            );
+          },
+          icon: Icon(Icons.camera_sharp, color: Colors.white),
+          label:
+          Text("View In AR", style: TextStyle(color: Colors.white)),
+          style: ButtonStyle(
+              backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.blue[900])),
+        ),
+        Positioned(bottom: 0, left: 0, child: IconButton(
+          onPressed: () {
+            setState(() {
+              modelViewerSize == 300 ? modelViewerSize = MediaQuery.of(context).size.height : modelViewerSize = 300;
+            });
+            print(modelViewerSize);
+          },
+          icon: Icon(Icons.filter_center_focus, color: Colors.white),
+          // style: ButtonStyle(
+          //     backgroundColor:
+          //     MaterialStateProperty.all<Color>(Colors.grey[800])),
+        )),
+      ]),
+    );
+  }
+}
+
 
 class HeartFavourite extends StatefulWidget {
   final String myEntity;

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:ar_ui/mid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -117,8 +116,7 @@ class _FilterGalleryState extends State<FilterGallery> {
                 color: Colors.black),
           ),
           style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(secondaryColor),
+              backgroundColor: MaterialStateProperty.all<Color>(secondaryColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
@@ -261,7 +259,6 @@ class _ModelGalleryState extends State<ModelGallery> {
 
     if (filter.isEmpty) {
       return StaggeredGridView.countBuilder(
-
         padding: EdgeInsets.all(0),
         crossAxisCount: 4,
         itemCount: objectTypesCarousel.length + threshAndLength,
@@ -276,7 +273,8 @@ class _ModelGalleryState extends State<ModelGallery> {
                   Radius.circular(10.0),
                 ),
               ),
-              child: ModelCarousel(myIndex: Random().nextInt(objectTypesCarousel.length)),
+              child: ModelCarousel(
+                  myIndex: Random().nextInt(objectTypesCarousel.length)),
             );
           } else {
             return Container(
@@ -396,8 +394,7 @@ class _ModelCarouselState extends State<ModelCarousel> {
             context,
             MaterialPageRoute(
                 builder: (context) => DescScreen(entity: element),
-                settings:
-                RouteSettings(name: "Description Screen - $element")),
+                settings: RouteSettings(name: "Description Screen - $element")),
           );
         },
       ));
@@ -504,7 +501,8 @@ class TypingText extends StatefulWidget {
 
 class _TypingTextState extends State<TypingText>
     with SingleTickerProviderStateMixin {
-  final String subtext = "Choose from ${(objectKeys.length / 10).floor() * 10}+ Models";
+  final String subtext =
+      "Choose from ${(objectKeys.length / 10).floor() * 10}+ Models";
   AnimationController controller;
   Animation<int> animation;
 
