@@ -251,7 +251,7 @@ class _ModelGalleryState extends State<ModelGallery> {
         lastThreshhold += 3;
       }
     }
-  } //double _margin = 50;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +266,6 @@ class _ModelGalleryState extends State<ModelGallery> {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           if (index > objectTypesCarousel.length - 1) {
-            //return Container(alignment: Alignment.center,color: Color.fromRGBO(0, 0, 0, 0.2), child: Text("COMING SOON!", style: TextStyle(color: Colors.white),));
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
